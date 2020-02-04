@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            color: burlywood;
+        }
+
+        #display {
+            width: 20vw;
+            height: 25vw;
+            border: 1px solid silver;
+            margin 7vw;
+            padding: 1vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="display"></div>
+
+    <script>
+        let playlist = ["røv", "øl", "antilope", "bum", "gummitarzan", "hest", "fucking fuck", "pisogs", "puh", "okay fint"];
+        playlist.forEach(sang => {
+            document.querySelector("#display").innerHTML += `${sang}<br>`;
+        })
+    </script>
+</body></html>
