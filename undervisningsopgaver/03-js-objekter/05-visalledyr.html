@@ -8,9 +8,8 @@
 
 <body>
 
-    <article>
-        <p></p>
-        <img src="" alt="">
+    <article id="liste">
+
     </article>
     <script>
         document.addEventListener("DOMContentLoaded", start)
@@ -50,6 +49,11 @@
 
         function start() {
             console.log(dyr);
+
+            const listevisning = document.querySelector("#liste");
+            dyr.forEach(animal => {
+                listevisning.innerHTML += `<p>${animal.navn}, ${animal.type} fra ${animal.levested}</p>`
+            })
         }
     </script>
 </body></html>
