@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        article {
+
+            border: 1px solid black;
+            margin: 10px;
+        }
+
+        article:nth-child(even) {
+            background: yellow;
+        }
+
+        article:nth-child(odd) {
+            background: pink;
+        }
+
+        article:first-child {
+            border: 5px solid red;
+        }
+
+        article:nth-child(3) {
+            border: 5px solid blue;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="data-container"></section>
+    <template>
+        <article id="liste">
+            <h3></h3>
+            <img src="" alt="">
+            <p id="type"></p>
+            <p id="levested"></p>
+
+        </article>
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start)
+
+        const dyr = [{
+                "navn": "Gris",
+                "type": "Pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/pig.png",
+                "levested": "Svinefarm"
+            },
+            {
+                "navn": "Frø",
+                "type": "Amfibie",
+                "billede": "http://mabe-kea.dk/E19/pics/frog.png",
+                "levested": "Vandhul"
+            },
+            {
+                "navn": "Ræv",
+                "type": "Pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/fox.png",
+                "levested": "Skov"
+            },
+            {
+                "navn": "Sild",
+                "type": "Fisk",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.jpg",
+                "levested": "Vand"
+            },
+            {
+                "navn": "Krokodille",
+                "type": "Krybdyr",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg",
+                "levested": "Sump"
+            }
+        ]
+
+
+        function start() {
+            console.log(dyr);
+
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+
+            dyr.forEach(animal => {
+                let klon = dyrTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = animal.navn;
+                klon.querySelector("img").src = animal.billede;
+                klon.querySelector("#type").textContent = animal.type;
+                klon.querySelector("#levested").textContent = animal.levested;
+                container.appendChild(klon);
+
+
+            })
+
+
+        }
+    </script>
+</body></html>

@@ -11,38 +11,41 @@
 <body>
     <p>Hvor mage timer har du fløjet?</p>
     <input typen="text" id="timer">
-    <p>co2UdledtlKgVedFlyrejse = timer x 109</p>
+
 
     <button> Udregn co2 udledning og Kig i konsollen</button>
 
 
     <script>
-        let længde = 3;
-        let bredde = 50;
-        let areal = længde * bredde;
-        let resultat;
+        document.querySelector("button").addEventListener("click", button_clicked);
 
-        // Mindre en 100
-        if (areal < 100) {
-            resultat = "Tæt på Thunberg";
-        }
-        //mellem 100 og 200
-        if (areal >= 100 && areal < 200) {
-            resultat = "Ja ja, du behøver ikke at melde dig ud af Å!";
-        }
-        //mellem 200 og 600
-        if (areal >= 200 && areal < 600) {
-            resultat = "Det er godt for turismen i nordeuropa";
-        }
-        //Er det større end (eller lig med)  200, skal der stå: Arealet er for stort
-        if (areal >= 600) {
-            resultat = "Nå ja vi kan jo altid kolonisere en anden planet...";
-        }
+        function button_clicked() {
 
 
-        console.log(resultat);
+            let timer = document.querySelector("#timer").value;
+            let co2UdledtlKgVedFlyrejse = 109;
+            let udledning = timer * co2UdledtlKgVedFlyrejse;
 
+
+
+
+            // Mindre en 100
+            if (udledning < 100) {
+                console.log("Ved " + timer + " timers flyrejse har du udledt " + udledning + "kg CO2. Tæt på Thunberg");
+            }
+            //mellem 100 og 200
+            if (udledning >= 100 && udledning < 200) {
+                console.log("Ved " + timer + " timers flyrejse har du udledt " + udledning + "kg CO2. Ja ja, du behøver ikke at melde dig ud af Å!");
+            }
+            //mellem 200 og 600
+            if (udledning >= 200 && udledning < 600) {
+                console.log("Ved " + timer + " timers flyrejse har du udledt " + udledning + "kg CO2, Det er godt for turismen i nordeuropa");
+            }
+            //Er det større end (eller lig med)  200, skal der stå: Arealet er for stort
+            if (udledning >= 600) {
+                console.log("Ved " + udledning + " timers flyrejse har du udledt " + udledning + "kg CO2. Nå ja, vi kan jo altid kolonisere en anden planet...");
+            }
+
+        }
     </script>
-</body>
-
-</html>
+</body></html>
