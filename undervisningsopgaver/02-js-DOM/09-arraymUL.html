@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<ul id="display"> </ul>
+
+<body>
+    <script>
+        let playlist = ["røv", "øl", "antilope", "bum", "gummitarzan", "hest", "fucking fuck", "pisogs", "puh", "okay fint"];
+        playlist.forEach(sang => {
+            let element = document.createElement("li");
+            let mySong = document.createTextNode(sang);
+
+            element.appendChild(mySong);
+            document.querySelector("#display").appendChild(element);
+
+        })
+    </script>
+</body></html>
