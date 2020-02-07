@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Guess</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Det store gættespil</h1>
+
+    <p>GÆT ET TAL!</p>
+    <input type="text" id="guess">
+    <button>Tjek svar!</button>
+    <p id="guess_output"></p>
+
+    <script>
+        window.addEventListener("load", randomTal);
+
+        function randomTal() {
+            let tal = Math.floor(Math.random() * 20) + 0;
+
+            let guess = document.querySelector("#guess");
+            let guessOutput = document.querySelector("#guess_output");
+            let guessCount = 0;
+
+            document.querySelector("button").addEventListener("click", buttonClicked);
+            document.querySelector("button").removeEventListener("click", randomTal);
+            document.querySelector("button").innerHTML = "Tjek svar";
+            guessOutput.innerHTML = "";
+            guess.value = "";
+
+            function buttonClicked() {
+                guessCount++;
+
+                if (guess.value < tal) {
+                    console.log("For lavt tal");
+                    guessOutput.innerHTML = "Jeg tænker på et højere tal";
+                } else if (guess.value == tal) {
+                    console.log(`Du har gættet det rigtige tal på ${guessCount} forsøg!`);
+                    guessOutput.innerHTML = `Du har gættet det rigtige tal på ${guessCount} forsøg!`;
+
+                    document.querySelector("button").innerHTML = "spil igen?";
+                    document.querySelector("button").addEventListener("click", randomTal);
+
+                } else if (guess.value > tal) {
+                    console.log("For højt tal");
+                    guessOutput.innerHTML = "Jeg tænker på et lavere tal";
+                }
+            }
+        }
+    </script>
+</body></html>

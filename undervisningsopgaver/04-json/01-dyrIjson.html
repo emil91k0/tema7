@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        article {
+
+            border: 1px solid black;
+            margin: 4px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section class="data-container"></section>
+    <template>
+        <article id="liste">
+            <h3></h3>
+            <img src="" alt="">
+            <p id="type"></p>
+            <p id="levested"></p>
+
+        </article>
+    </template>
+    <script>
+        let dyr = []
+        document.addEventListener("DOMContentLoaded", start)
+
+        //start
+        function start() {
+            hentJson();
+        }
+        //hentDYR
+        async function hentJson() {
+            const jsonData = await fetch("alleDyr.json");
+            dyr = await jsonData.json();
+            visDyr();
+        }
+        //visDyr
+
+
+        function visDyr() {
+            console.log(dyr);
+
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+
+            dyr.forEach(animal => {
+                let klon = dyrTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = animal.navn;
+                klon.querySelector("img").src = animal.billede;
+                klon.querySelector("#type").textContent = animal.type;
+                klon.querySelector("#levested").textContent = animal.levested;
+                container.appendChild(klon);
+
+
+            })
+
+
+        }
+    </script>
+</body></html>

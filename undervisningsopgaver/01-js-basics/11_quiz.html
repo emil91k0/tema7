@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 Quiz</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Det store quiz spil</h1>
+
+    <p id="question"></p>
+    <input type="text" id="answer">
+    <button>Tjek svar</button>
+    <p id="question_output"></p>
+    <p id="score"></p>
+
+    <script>
+        window.addEventListener("load", loadQuestions);
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        let point = 0;
+        let questionCounter = 1;
+        let answerInput = document.querySelector("#answer");
+        let quizOutput = document.querySelector("#question_output");
+
+        let question1 = "Hvor mange tæer har et menneskebarn på normal vis?";
+        let question2 = "Hvor mange hoveder har et menneskebarn på normal vis?";
+        let question3 = "Skider bjørnen i skoven?";
+        let question4 = "Hvad er fornavnet på Danmarks første kvindelige statsminister?";
+        let question5 = "Er agurk en frugt?";
+
+        function loadQuestions() {
+            if (questionCounter == 1) {
+                document.querySelector("#question").innerHTML = question1;
+            } else if (questionCounter == 2) {
+                document.querySelector("#question").innerHTML = question2;
+            } else if (questionCounter == 3) {
+                document.querySelector("#question").innerHTML = question3;
+            } else if (questionCounter == 4) {
+                document.querySelector("#question").innerHTML = question4;
+            } else if (questionCounter == 5) {
+                document.querySelector("#question").innerHTML = question5;
+            }
+
+        }
+
+        function buttonClicked() {
+            if (questionCounter == 1) {
+                if (answerInput.value == "10" || answerInput.value == "10" || answerInput.value == "10") {
+                    quizOutput.innerHTML = "Korrekt, de har normalt 10!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, de har normalt 10!";
+                }
+            }
+
+            if (questionCounter == 2) {
+                if (answerInput.value == "1" || answerInput.value == "1" || answerInput.value == "1" || answerInput.value == "1") {
+                    quizOutput.innerHTML = "Korrekt, de fleste har 1!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, de fleste har 1!";
+                }
+            }
+
+            if (questionCounter == 3) {
+                if (answerInput.value == "ja" || answerInput.value == "Ja") {
+                    quizOutput.innerHTML = "Korrekt, de skider for det meste i skoven!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, self gør de det!";
+                }
+            }
+
+            if (questionCounter == 4) {
+                if (answerInput.value == "Helle" || answerInput.value == "helle" || answerInput.value == "Helle") {
+                    quizOutput.innerHTML = "Korrekt, hun hedder simpelthen Helle!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = " Fuldstændig forkert, hun hedder Helle!";
+                }
+            }
+
+            if (questionCounter == 5) {
+                if (answerInput.value == "Nej" || answerInput.value == "nej") {
+                    quizOutput.innerHTML = "Korrekt, det er nemlig en grøntsag";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, det er nemlig en grøntsag!";
+                }
+                document.querySelector("#question").innerHTML = "Der er ikke flere spørgsmål";
+                document.querySelector("#score").innerHTML = `Du fik ${point} point i denne quiz. Godt gået!`;
+            }
+
+            answerInput.value = "";
+            questionCounter++;
+            loadQuestions();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Din Alder</p>
+    <input type="text" id="your_age"><br>
+    <p>Din date's alder</p>
+    <input type="text" id="date_age"><br><br>
+    <button>Klik her og tjek om alderen er god.</button>
+
+
+
+
+    <script>
+        let yourAge = document.querySelector("#your_age");
+        let dateAge = document.querySelector("#date_age");
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        function buttonClicked() {
+            console.log(yourAge.value);
+            console.log(dateAge.value);
+
+            let yourRule = (dateAge.value / 2 + 7);
+            let dateRule = (yourRule.value / 2 + 7);
+
+
+
+            if (yourAge.value < 15 || dateAge.value < 15) {
+                console.log("NIKS PILLE");
+
+            } else if (yourAge.value < yourRule || yourAge > yourRule) {
+                console.log("Din date overholder ikke reglerne.");
+
+            } else if (dateAge.value < dateRule || dateAge > dateRule) {
+                console.log("Du overholder ikke reglerne");
+            } else {
+                console.log("Hvem har brug for Tinder?!")
+            }
+
+        }
+    </script>
+</body></html>

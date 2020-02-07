@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Åben inspect for at se udregninger på hundealder</h1>
+
+    <script>
+        let hundeAlder = 12;
+
+        const gammelUdregning = hundeAlder * 7;
+        const nyUdregning = 16 * Math.log(hundeAlder) + 31;
+
+        console.log("Med den gamle metode er en hund på alderen " + hundeAlder + " i menneskeår: " + gammelUdregning + " år");
+        console.log("Med den nye metode er en hund på alderen " + hundeAlder + " i menneskeår: " + nyUdregning + " år");
+
+    </script>
+</body>
+
+</html>
