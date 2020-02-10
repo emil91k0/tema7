@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:700|Monofett|Monoton|Open+Sans+Condensed:300|Righteous|Special+Elite&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 100%;
+
+
+        }
+
+
+        body {
+            background-color: #F2EBDC;
+        }
+
+
+        .splash {
+            background-image: url(bwbabushka.jpg);
+            background-size: cover;
+
+        }
+
+        .splash img {
+            height: 100%;
+        }
+
+        h1 {
+            font-family: 'Righteous', cursive;
+            font-size: 10vw;
+            color: #732C26;
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 150px;
+            margin-top: 0px;
+
+        }
+
+        h3 {
+            font-family: 'Josefin Slab', serif;
+            font-weight: 700;
+            font-size: 3rem;
+
+        }
+
+        p {
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
+
+
+
+        .data-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2vw;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+        }
+
+        article {
+            padding: 2vw;
+            margin: 1vw;
+        }
+
+        article:nth-child(even) {
+            background: #8FBABF;
+        }
+
+        article:nth-child(odd) {
+            background: #D95A4E;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="splash">
+        <div>
+            <h1>B A B U S H K A</h1>
+        </div>
+    </div>
+    <nav>
+        <button class="filter valgt" data-kat="alle">Alle</button>
+        <button class="filter" data-kat="forretter">Forretter</button>
+        <button class="filter" data-kat="hovedretter">Hovedretter</button>
+        <button class="filter" data-kat="desserter">Desserter</button>
+        <button class="filter" data-kat="drikkevarer">Drikkevarer</button>
+        <button class="filter" data-kat="sideorders">Sideorders</button>
+    </nav>
+    <h2>Alle</h2>
+    <section class="data-container"></section>
+    <template>
+        <article id="liste">
+            <h3></h3>
+            <img src="" alt="">
+            <p id="id"></p>
+            <p id="kategori"></p>
+            <p id="pris"></p>
+            <p id="kort"></p>
+            <p id="lang"></p>
+            <p id="oprindelse"></p>
+
+
+        </article>
+    </template>
+    <main></main>
+    <script>
+        const endpoint = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
+
+        let menu = [];
+        let filter = "alle";
+        const container = document.querySelector(".data-container");
+        const menuTemplate = document.querySelector("template");
+        document.addEventListener("DOMContentLoaded", start)
+
+        //start
+        function start() {
+            loadData();
+            addEventListenersToButtons();
+        }
+        //hentDYR
+        async function loadData() {
+            const response = await fetch(endpoint);
+            menu = await response.json();
+            console.log(menu);
+            visMenu();
+        }
+
+        function visMenu() {
+            container.innerHTML = "";
+
+
+            menu.feed.entry.forEach(ret => {
+                if (filter == "alle" || filter == ret.gsx$kategori.$t) {
+                    let klon = menuTemplate.cloneNode(true).content;
+                    klon.querySelector("h3").textContent = ret.gsx$navn.$t;
+                    klon.querySelector("img").src = ret.gsx$billede.$t;
+                    klon.querySelector("#id").textContent = `ID: ${ret.gsx$id.$t}`;
+                    klon.querySelector("#kategori").textContent = `Kategori: ${ret.gsx$kategori.$t}`;
+                    klon.querySelector("#pris").textContent = `Pris: ${ret.gsx$pris.$t}`;
+                    klon.querySelector("#kort").textContent = `Kort: ${ret.gsx$kort.$t}`;
+                    // klon.querySelector("#lang").textContent = `Lang: ${ret.gsx$lang.$t}`;
+                    // klon.querySelector("#oprindelse").textContent = `Oprindelse: ${ret.gsx$oprindelse.$t}`;
+
+                    container.appendChild(klon);
+                }
+
+            })
+        }
+
+        function addEventListenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+        function filtrering() {
+            console.log("FILTER");
+            filter = this.dataset.kat;
+            document.querySelector("h2").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            })
+            this.classList.add("valgt");
+            visMenu();
+        }
+    </script>
+</body></html>
