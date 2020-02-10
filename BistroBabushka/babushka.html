@@ -177,7 +177,7 @@
                 if (filter == "alle" || filter == ret.gsx$kategori.$t) {
                     let klon = menuTemplate.cloneNode(true).content;
                     klon.querySelector("h3").textContent = ret.gsx$navn.$t;
-                    klon.querySelector("img").src = ret.gsx$billede.$t;
+                    klon.querySelector("img").src = `imgs/small/${ret.gsx$billede.$t}-sm.jpg`;
                     klon.querySelector("#id").textContent = `ID: ${ret.gsx$id.$t}`;
                     klon.querySelector("#kategori").textContent = `Kategori: ${ret.gsx$kategori.$t}`;
                     klon.querySelector("#pris").textContent = `Pris: ${ret.gsx$pris.$t}`;
