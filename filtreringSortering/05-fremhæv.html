@@ -30,7 +30,7 @@
         }
 
         .valgt {
-            color: yellow;
+            background-color: peachpuff;
         }
 
         h1 {
@@ -70,6 +70,7 @@
         article:nth-child(odd) {
             background: burlywood;
         }
+
     </style>
 </head>
 
@@ -157,7 +158,14 @@
             console.log("FILTER");
             filter = this.dataset.køn;
             document.querySelector("h1").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            })
+            this.classList.add("valgt");
             visPersoner();
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
