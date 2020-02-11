@@ -71,6 +71,27 @@
             background: burlywood;
         }
 
+        #detalje {
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba (0, 0, 0, 0.5);
+
+        }
+
+        #detalje button {}
+
+        #person {
+            margin: 3em;
+            padding: 2em;
+            background-color: white;
+            border: 2px solid black;
+        }
+
+        .skjul {
+            display: none;
+        }
     </style>
 </head>
 
@@ -90,6 +111,8 @@
 
     <template>
         <article id="liste">
+
+
             <h2></h2>
             <img src="" alt="">
             <p id="navn"></p>
@@ -107,6 +130,14 @@
     </template>
     <main></main>
 
+    <section id="detalje" class="skjul">
+        <button>X</button>
+        <article id="person">
+            <h1>NAVN</h1>
+            <img src="" alt="">
+            <p>RELIGION</p>
+        </article>
+    </section>
 
     <script>
         const endpoint = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
@@ -117,6 +148,7 @@
         let filterAlder = 0;
         const container = document.querySelector(".data-container");
         const personerTemplate = document.querySelector("template");
+        const detalje = document.querySelector("#detalje");
         //start
         function start() {
             loadData();
@@ -146,10 +178,23 @@
                     klon.querySelector("#by").textContent = `By: ${person.gsx$by.$t}`;
                     klon.querySelector("#job").textContent = `Job: ${person.gsx$job.$t}`;
                     klon.querySelector("#rpc").textContent = `RPC: ${person.gsx$rpc.$t}`;
+                    klon.querySelector("article").addEventListener("click", () => visDetalje(person));
+
+
+
                     container.appendChild(klon);
                 }
 
             })
+        }
+
+        function visDetalje(person) {
+            detalje.classList.remove("skjul");
+            detalje.querySelector("button").addEventListener("click", () => detalje.classList.add("skjul"));
+            console.log(person.gsx$navn.$t);
+
+
+
         }
 
         function addEventListenersToButtons() {
@@ -181,8 +226,5 @@
             }
             visPersoner();
         }
-
     </script>
-</body>
-
-</html>
+</body></html>
